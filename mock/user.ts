@@ -22,7 +22,37 @@ const mock: Array<MockMethod> = [
           message: "success",
           data: "登录成功,即将跳转.",
         };
-      else return { status: 401, message: "failed", data: "登录失败" };
+      else return { status: 203, message: "failed", data: "登录失败" };
+    },
+  },
+  {
+    url: "/api/routes",
+    method: "get",
+    response: () => {
+      // 路由
+      const routes = [
+        {
+          path: "/PageOne",
+          name: "PageOne",
+          component: "PageOne.vue",
+        },
+        {
+          path: "/PageTwo",
+          name: "PageTwo",
+          component: "PageTwo.vue",
+        },
+        {
+          path: "/PageThree",
+          name: "PageThree",
+          component: "PageThree.vue",
+        },
+      ];
+
+      return {
+        status: 200,
+        message: "success",
+        data: routes,
+      };
     },
   },
 ];

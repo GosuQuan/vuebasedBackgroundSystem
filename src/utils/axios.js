@@ -48,13 +48,12 @@ request.interceptors.response.use(
     const msg = res.data.message || "未知错误";
     if (status == 401) {
       //路由跳转
-      errmsg('登录失败');
+      errmsg("登录失败");
       return Promise.reject(new Error(msg));
     }
     if (status !== 200) {
       let msgString = "错误码" + status + " " + msg;
       errmsg(msgString);
-
       return Promise.reject(new Error(msg));
     }
     resultSuccess("成功登录");
@@ -62,6 +61,7 @@ request.interceptors.response.use(
   },
   (err) => {
     // alert(err);
+    console.log("失败");
     return Promise.reject(new Error(err));
   }
 );

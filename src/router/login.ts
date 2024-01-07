@@ -1,12 +1,10 @@
 import { RouteRecordRaw } from "vue-router";
-
+import Login from "../views/Pages/Login.vue";
 // import Login from '../Login'
-export const routes: RouteRecordRaw = {
+export const LoginRoutes: RouteRecordRaw = {
   path: "/login",
   name: "Login",
-  component: () => {
-    import("../Login.vue");
-  },
+  component: Login,
   meta: {
     title: "登录",
   },

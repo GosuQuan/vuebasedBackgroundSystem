@@ -43,21 +43,30 @@
 </template>
 <script lang="ts" setup>
 import { reactive } from "vue";
-import { login } from "./api/user";
-import { LoginParams } from "./api/userModel/userModel";
+import { login } from "../../api/user";
+import { LoginParams } from "../../api/userModel/userModel";
+import { useRouter, useRoute } from "vue-router";
 
-import { message } from "ant-design-vue";
-
+const router = useRouter();
+const route = useRoute();
 const formState = reactive<LoginParams>({
   username: "",
   password: "",
 });
-// const errmsg = (msg: string) => {
-//   message.error(msg);
-// };
-const onFinish = (values: LoginParams) => {
-   login(values);
-  // errmsg(res.data);
+
+const onFinish = async (values: LoginParams) => {
+  const res = await login(values);
+ 
+  if(res.status=== 200){
+    router.push("/dashboard")
+    console.log('成功登录')
+  }
+
+  // if (route.name === "Login") {
+  //   console.log(1);
+  //   router.replace("/");
+  // }
+  // else router.replace();
 };
 
 const onFinishFailed = (errorInfo: any) => {
