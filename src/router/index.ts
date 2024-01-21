@@ -1,25 +1,35 @@
 import { App } from "vue";
 import { RouteRecordRaw, createRouter, createWebHistory } from "vue-router";
 import { LoginRoutes } from "./login";
-import { dashboard_router } from "./module/dashboard";
+import controlRoutes from "./modules/dashboard";
+// const routeModuleList: RouteRecordRaw[] = Object.keys(modules).reduce(
+//   (list, key) => {
+//     const mod = modules[key].default ?? {};
+//     const modList = Array.isArray(mod) ? [...mod] : [mod];
+//     console.log([...list, ...modList]);
+//     return [...list, ...modList];
+//   },
+//   []
+// );
 export function setupRouter(app: App) {
   app.use(router);
-  //   createRouterGuards(router);
+  // createRouterGuards(router);
 }
-const base_router = {
+// export const asyncRoutes = [...routeModuleList];
+const base_router: RouteRecordRaw = {
   path: "/",
-  name: "Manage",
+  name: "Root",
+  redirect: "/login",
   component: () => import("../views/Pages/Page1.vue"),
   // redirect: "/Home",/
   meta: {
     title: "登录",
   },
 };
-
 export const constantRouter: RouteRecordRaw[] = [
   LoginRoutes,
   base_router,
-  dashboard_router,
+  controlRoutes,
 ];
 
 const router = createRouter({

@@ -1,13 +1,12 @@
 <template>
   <a-layout style="min-height: 100vh">
     <a-layout-sider v-model:collapsed="collapsed" collapsible>
-      
       <div class="SystemTitle">
         <h2>后台管理系统</h2>
       </div>
       <a-menu
         v-model:selectedKeys="selectedKeys"
-        @click="handleClick"
+        @click="handleClick(selectedKeys)"
         theme="dark"
         mode="inline"
       >
@@ -100,7 +99,8 @@ const collapsed = ref<boolean>(false);
 const selectedKeys = ref<string[]>(["1"]);
 const router = useRouter();
 const currentRoute = useRoute();
-const handleClick = () => {
+const handleClick = (e) => {
+  console.log(currentRoute.name)
 };
 </script>
 <style scoped>
