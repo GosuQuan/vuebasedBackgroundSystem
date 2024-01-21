@@ -3,7 +3,13 @@
     <div class="sidebar">
       <a-layout-sider v-model:collapsed="collapsed" collapsible>
         <div class="logo">123</div>
-        <a-menu v-model:selectedKeys="selectedKeys" theme="dark" mode="inline">
+        <a-menu
+          :trigger="null"
+          v-model:selectedKeys="selectedKeys"
+          theme="dark"
+          mode="inline"
+          @click="handleClick(selectedKeys)"
+        >
           <a-menu-item key="1">
             <pie-chart-outlined />
             <span>Option 1</span>
@@ -49,7 +55,23 @@
     </div>
   </div>
 </template>
-<script setup> </script>
+<script setup lang="ts">
+import { ref, nextTick } from "vue";
+import { useRouter } from "vue-router";
+const selectedKeys = ref(["1"]);
+const router = useRouter();
+const handleClick = (e: any) => {
+  selectedKeys.value = e;
+
+  nextTick(() => {
+    console.log(selectedKeys.value); // 现在应该显示最新的值
+
+    if (selectedKeys.value.includes("2")) {
+      router.push("/");
+    }
+  });
+};
+</script>
 <style scoped>
 body,
 html {
