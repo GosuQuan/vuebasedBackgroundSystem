@@ -2,6 +2,7 @@ import { App } from "vue";
 import { RouteRecordRaw, createRouter, createWebHistory } from "vue-router";
 import { LoginRoutes } from "./login";
 import controlRoutes from "./modules/dashboard";
+import userRoutes from "./modules/user";
 // const routeModuleList: RouteRecordRaw[] = Object.keys(modules).reduce(
 //   (list, key) => {
 //     const mod = modules[key].default ?? {};
@@ -27,6 +28,7 @@ const base_router: RouteRecordRaw = {
   },
 };
 export const constantRouter: RouteRecordRaw[] = [
+  userRoutes,
   LoginRoutes,
   base_router,
   controlRoutes,
